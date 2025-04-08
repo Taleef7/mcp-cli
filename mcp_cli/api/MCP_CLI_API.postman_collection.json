@@ -1,0 +1,329 @@
+{
+	"info": {
+		"_postman_id": "5f9b8e7a-6c3d-4e2f-8a1b-9c0d8e5f4c3b",
+		"name": "MCP CLI API",
+		"description": "A collection for testing the MCP CLI API endpoints. This API allows interaction with Model Context Protocol (MCP) servers via HTTP requests.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Status",
+			"item": [
+				{
+					"name": "Get API Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/status",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"status"
+							]
+						},
+						"description": "Health check endpoint for the API server."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for checking the API status."
+		},
+		{
+			"name": "Servers",
+			"item": [
+				{
+					"name": "List All Servers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/servers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"servers"
+							]
+						},
+						"description": "Get a list of all configured MCP servers."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Server Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/servers/{{serverName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"servers",
+								"{{serverName}}"
+							]
+						},
+						"description": "Get details about a specific MCP server."
+					},
+					"response": []
+				},
+				{
+					"name": "Add New Server",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"playwright\",\n    \"command\": \"npx\",\n    \"args\": [\"@playwright/mcp@latest\"],\n    \"env\": {\"DISPLAY\": \":1\"}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/servers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"servers"
+							]
+						},
+						"description": "Add a new MCP server configuration."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Server",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"command\": \"npx\",\n    \"args\": [\"@playwright/mcp@latest\", \"--headless\"],\n    \"env\": {\"DISPLAY\": \":1\", \"DEBUG\": \"pw:api\"}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/servers/{{serverName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"servers",
+								"{{serverName}}"
+							]
+						},
+						"description": "Update an existing MCP server configuration."
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Server",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/servers/{{serverName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"servers",
+								"{{serverName}}"
+							]
+						},
+						"description": "Remove an MCP server configuration."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for managing MCP server configurations."
+		},
+		{
+			"name": "Queries",
+			"item": [
+				{
+					"name": "Run Query",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"server\": \"playwright\",\n    \"query\": \"Find the best restaurants in San Francisco\",\n    \"model\": \"gpt-3.5-turbo\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/query",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"query"
+							]
+						},
+						"description": "Execute a query against an MCP server."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for executing queries against MCP servers."
+		},
+		{
+			"name": "Tools",
+			"item": [
+				{
+					"name": "List Server Tools",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/servers/{{serverName}}/tools?model={{modelName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"servers",
+								"{{serverName}}",
+								"tools"
+							],
+							"query": [
+								{
+									"key": "model",
+									"value": "{{modelName}}",
+									"description": "OpenAI model to use for tool discovery"
+								}
+							]
+						},
+						"description": "List tools provided by an MCP server."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for discovering tools provided by MCP servers."
+		},
+		{
+			"name": "Configuration",
+			"item": [
+				{
+					"name": "Export Configuration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"filepath\": \"/path/to/config.json\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/config/export",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"export"
+							]
+						},
+						"description": "Export the configuration to a file."
+					},
+					"response": []
+				},
+				{
+					"name": "Import Configuration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"filepath\": \"/path/to/config.json\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/config/import",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"import"
+							]
+						},
+						"description": "Import configuration from a file."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for managing configuration."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5000",
+			"type": "string",
+			"description": "The base URL of the MCP CLI API server"
+		},
+		{
+			"key": "serverName",
+			"value": "playwright",
+			"type": "string",
+			"description": "Name of the MCP server to interact with"
+		},
+		{
+			"key": "modelName",
+			"value": "gpt-3.5-turbo",
+			"type": "string",
+			"description": "OpenAI model to use"
+		}
+	]
+} 
