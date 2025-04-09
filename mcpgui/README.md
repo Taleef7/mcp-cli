@@ -1,103 +1,103 @@
 # MCP CLI GUI
 
-Una semplice interfaccia web per interagire con l'API MCP CLI, implementata in Next.js.
+A simple web interface to interact with the MCP CLI API, implemented in Next.js.
 
-## Caratteristiche
+## Features
 
-- Gestione dei server MCP (aggiunta, rimozione, visualizzazione)
-- Esecuzione di query sui server MCP
-- Visualizzazione degli strumenti disponibili su ciascun server
-- Importazione/esportazione della configurazione
-- Interfaccia moderna e reattiva
+- MCP server management (add, remove, view)
+- Running queries on MCP servers
+- Viewing available tools on each server
+- Configuration import/export
+- Modern and responsive interface
 
-## Prerequisiti
+## Prerequisites
 
-- Node.js 18 o superiore
-- Un server MCP CLI API funzionante
+- Node.js 18 or higher
+- A running MCP CLI API server
 
-## Installazione
+## Installation
 
 ```bash
-# Clona il repository
+# Clone the repository
 git clone https://github.com/yourusername/mcp-cli-gui.git
 cd mcp-cli-gui
 
-# Installa le dipendenze
+# Install dependencies
 npm install
 
-# Avvia il server di sviluppo
+# Start the development server
 npm run dev
 ```
 
-## Configurazione
+## Configuration
 
-Per impostazione predefinita, l'applicazione si connette a un server MCP CLI API all'indirizzo `http://localhost:8000/api`. Per modificare questo URL, puoi modificare il file `src/lib/api-client.ts`.
+By default, the application connects to an MCP CLI API server at `http://localhost:8000/api`. To change this URL, you can modify the `src/lib/api-client.ts` file.
 
 ```typescript
-// Modifica questo valore per puntare al tuo server MCP CLI API
+// Change this value to point to your MCP CLI API server
 const baseUrl = 'http://localhost:8000/api';
 ```
 
-## Utilizzo
+## Usage
 
-### Gestione dei server
+### Server Management
 
-Nella sezione "Servers", puoi:
-- Visualizzare l'elenco dei server MCP configurati
-- Aggiungere nuovi server specificando nome, comando, argomenti e variabili d'ambiente
-- Rimuovere i server esistenti
+In the "Servers" section, you can:
+- View the list of configured MCP servers
+- Add new servers specifying name, command, arguments, and environment variables
+- Remove existing servers
 
-### Esecuzione di query
+### Query Execution
 
-Nella sezione "Query", puoi:
-- Selezionare un server MCP tra quelli configurati
-- Specificare il modello da utilizzare (predefinito: gpt-3.5-turbo)
-- Inserire una query da eseguire
-- Visualizzare il risultato dell'esecuzione
+In the "Query" section, you can:
+- Select an MCP server from the configured ones
+- Specify the model to use (default: gpt-3.5-turbo)
+- Enter a query to execute
+- View the execution result
 
-### Visualizzazione degli strumenti
+### Tools Viewing
 
-Nella sezione "Tools", puoi:
-- Selezionare un server MCP 
-- Visualizzare l'elenco degli strumenti disponibili su quel server
-- Espandere ciascuno strumento per vedere la descrizione e i parametri richiesti
+In the "Tools" section, you can:
+- Select an MCP server
+- View the list of available tools on that server
+- Expand each tool to see the description and required parameters
 
-### Gestione della configurazione
+### Configuration Management
 
-Nella sezione "Configuration", puoi:
-- Importare una configurazione esistente da un file
-- Esportare la configurazione corrente in un file
+In the "Configuration" section, you can:
+- Import an existing configuration from a file
+- Export the current configuration to a file
 
-## Sviluppo
+## Development
 
-### Struttura del progetto
+### Project Structure
 
 ```
 src/
-├── app/                 # Pagine Next.js (app router)
-├── components/          # Componenti React
-│   ├── ui/              # Componenti UI riutilizzabili
-│   └── ...              # Componenti specifici dell'applicazione
-├── lib/                 # Librerie e utilità
+├── app/                 # Next.js pages (app router)
+├── components/          # React components
+│   ├── ui/              # Reusable UI components
+│   └── ...              # Application-specific components
+├── lib/                 # Libraries and utilities
 └── ...
 ```
 
-### Comandi
+### Commands
 
 ```bash
-# Avvia il server di sviluppo
+# Start the development server
 npm run dev
 
-# Costruisci l'applicazione per la produzione
+# Build the application for production
 npm run build
 
-# Avvia l'applicazione in modalità produzione
+# Start the application in production mode
 npm start
 
-# Esegui il linting
+# Run linting
 npm run lint
 ```
 
-## Licenza
+## License
 
 MIT
