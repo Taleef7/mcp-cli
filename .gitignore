@@ -22,6 +22,7 @@ wheels/
 MANIFEST
 
 # Virtual Environment
+.venv/
 venv/
 env/
 ENV/
@@ -36,7 +37,7 @@ ENV/
 .env
 
 # MCP specific
-config/config.json
+# config/config.json
 
 # Logs
 *.log
