@@ -224,7 +224,15 @@ To create your own MCP server, refer to the [Model Context Protocol documentatio
 - **Error connecting to server**: Make sure the MCP server is installed and available. For NPM-based servers, try installing them globally first.
 - **API key errors**: Ensure your OpenAI API key is set correctly in the `.env` file or as an environment variable.
 - **Tool not found**: Some tools might require specific server configurations or additional setup. Check the server documentation.
-- **GUI not starting**: Make sure PyQt5 is installed correctly: `pip install PyQt5`.
+- **GUI not starting / `xcb` plugin error on WSL**:
+   - First, ensure PyQt5 is installed correctly in your Python environment: `pip install PyQt5`.
+    - If you are running the application on WSL (Windows Subsystem for Linux, especially with Windows 11 and WSLg) and encounter an error message similar to `qt.qpa.plugin: Could not load the Qt platform plugin "xcb" ... even though it was found.`, it typically indicates that essential X11 client libraries are missing within your WSL distribution.
+    - You can usually resolve this by installing these libraries. For Debian/Ubuntu-based WSL distributions, execute the following command in your WSL terminal:
+      ```bash
+      sudo apt update
+      sudo apt install -y libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-shape0 libxcb-xfixes0 libxcb-xinerama0 libfontconfig1 libgl1-mesa-glx libegl1-mesa
+      ```
+    - Also, ensure your `DISPLAY` environment variable is correctly set within WSL. For WSLg (common on Windows 11), this is often automatically set to `:0`. For manual X server configurations (e.g., VcXsrv on Windows 10), you might need to set it like `export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0`.
 
 ## Development
 
